@@ -1,0 +1,210 @@
+
+=== 1. Площади, периметры, объёмы ===
+[OK]   Circle r=2, площадь = 4π
+         ожидалось: 12.566370614359172
+         получено:  12.566370614359172
+[OK]   Circle r=2, периметр = 4π
+         ожидалось: 12.566370614359172
+         получено:  12.566370614359172
+[OK]   Rectangle 3×4, площадь
+         ожидалось: 12.0
+         получено:  12.0
+[OK]   Rectangle 3×4, периметр
+         ожидалось: 14.0
+         получено:  14.0
+[OK]   Cylinder(Circle r=2, h=5), объём = 20π
+         ожидалось: 62.83185307179586
+         получено:  62.83185307179586
+[OK]   Cylinder(Rectangle 3×4, h=5), объём
+         ожидалось: 60.0
+         получено:  60.0
+[OK]   toString круга
+         ожидалось: Circle{radius=2.0}
+         получено:  Circle{radius=2.0}
+[OK]   toString прямоугольника
+         ожидалось: Rectangle{width=3.0, height=4.0}
+         получено:  Rectangle{width=3.0, height=4.0}
+
+=== 2. Проверка параметров в конструкторах ===
+[OK]   new Circle(0.0)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'radius': значение должно быть положительным, получено 0.0
+[OK]   new Rectangle(1, 0.0)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть положительным, получено 0.0
+[OK]   new Cylinder(круг, 0.0)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть положительным, получено 0.0
+[OK]   new Circle(-1.0)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'radius': значение должно быть положительным, получено -1.0
+[OK]   new Rectangle(1, -1.0)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть положительным, получено -1.0
+[OK]   new Cylinder(круг, -1.0)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть положительным, получено -1.0
+[OK]   new Circle(NaN)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'radius': значение NaN недопустимо
+[OK]   new Rectangle(1, NaN)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение NaN недопустимо
+[OK]   new Cylinder(круг, NaN)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение NaN недопустимо
+[OK]   new Circle(Infinity)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'radius': значение должно быть конечным, получено Infinity
+[OK]   new Rectangle(1, Infinity)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть конечным, получено Infinity
+[OK]   new Cylinder(круг, Infinity)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть конечным, получено Infinity
+[OK]   new Circle(-Infinity)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'radius': значение должно быть конечным, получено -Infinity
+[OK]   new Rectangle(1, -Infinity)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть конечным, получено -Infinity
+[OK]   new Cylinder(круг, -Infinity)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'height': значение должно быть конечным, получено -Infinity
+[OK]   new Cylinder(null, 1)
+         ожидалось: InvalidFigureParameterException
+         получено:  InvalidFigureParameterException: Некорректный параметр 'base': основание не должно быть null
+
+=== 3. Работа finally ===
+[OK]   finally при radius=1.0 (успех)
+         ожидалось: try;ok;finally
+         получено:  try;ok;finally
+[OK]   finally при radius=-1.0 (исключение)
+         ожидалось: try;catch;finally
+         получено:  try;catch;finally
+
+=== 4. Текстовый формат: корректные и ошибочные файлы ===
+[OK]     количество
+         ожидалось: 3
+         получено:  3
+[OK]     порядок и параметры
+         ожидалось: [Circle{radius=1.5}, Rectangle{width=2.0, height=3.0}, Circle{radius=10.0}]
+         получено:  [Circle{radius=1.5}, Rectangle{width=2.0, height=3.0}, Circle{radius=10.0}]
+[OK]   Чтение кругов и прямоугольников
+         ожидалось: без исключений
+         получено:  без исключений
+[OK]   Неизвестный тип фигуры
+         ожидалось: FigureFormatException, строка 2
+         получено:  Строка 2: неизвестный тип фигуры 'TRIANGLE'
+[OK]   Неверное кол-во параметров (круг)
+         ожидалось: FigureFormatException, строка 1
+         получено:  Строка 1: для CIRCLE ожидается 1 парам., получено 2
+[OK]   Неверное кол-во параметров (прямоугольник)
+         ожидалось: FigureFormatException, строка 3
+         получено:  Строка 3: для RECTANGLE ожидается 2 парам., получено 1
+[OK]   Ошибка преобразования числа
+         ожидалось: FigureFormatException, строка 1, причина NumberFormatException
+         получено:  Строка 1: параметр № 2 не является числом: 'abc' | причина: NumberFormatException
+[OK]   Некорректное значение (отрицательный радиус)
+         ожидалось: FigureFormatException, строка 2, причина InvalidFigureParameterException
+         получено:  Строка 2: Некорректный параметр 'radius': значение должно быть положительным, получено -3.0 | причина: InvalidFigureParameterException
+[OK]   NaN в файле
+         ожидалось: FigureFormatException, строка 1, причина InvalidFigureParameterException
+         получено:  Строка 1: Некорректный параметр 'radius': значение NaN недопустимо | причина: InvalidFigureParameterException
+
+=== 5. Пустой файл / пустой список ===
+[OK]     размер
+         ожидалось: 0
+         получено:  0
+[OK]   Пустой текстовый файл → пустой список
+         ожидалось: без исключений
+         получено:  без исключений
+[OK]     размер после чтения
+         ожидалось: 0
+         получено:  0
+[OK]   TextFigureStorage: запись и чтение пустого списка
+         ожидалось: без исключений
+         получено:  без исключений
+[OK]     размер после чтения
+         ожидалось: 0
+         получено:  0
+[OK]   BinaryFigureStorage: запись и чтение пустого списка
+         ожидалось: без исключений
+         получено:  без исключений
+
+=== 6. Файловые ошибки ===
+[OK]   Текст: чтение отсутствующего файла
+         ожидалось: NoSuchFileException
+         получено:  NoSuchFileException: <tmp>/no-such-file.txt
+[OK]   Бинарный: чтение отсутствующего файла
+         ожидалось: NoSuchFileException
+         получено:  NoSuchFileException: <tmp>/no-such-file.txt
+[OK]   Текст: запись по пути каталога
+         ожидалось: IOException
+         получено:  FileSystemException: <tmp>: Is a directory
+[OK]   Бинарный: запись по пути каталога
+         ожидалось: IOException
+         получено:  FileSystemException: <tmp>: Is a directory
+
+=== 7. Совпадение после записи и чтения (оба формата) ===
+[OK]     размер
+         ожидалось: 5
+         получено:  5
+[OK]     [0] Circle{radius=1.5} ↔ Circle{radius=1.5}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [1] Rectangle{width=2.0, height=3.0} ↔ Rectangle{width=2.0, height=3.0}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [2] Circle{radius=0.1} ↔ Circle{radius=0.1}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [3] Rectangle{width=0.001, height=12345.678} ↔ Rectangle{width=0.001, height=12345.678}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [4] Circle{radius=3.141592653589793} ↔ Circle{radius=3.141592653589793}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]   TextFigureStorage: запись → чтение
+         ожидалось: без исключений
+         получено:  без исключений
+[OK]     размер
+         ожидалось: 5
+         получено:  5
+[OK]     [0] Circle{radius=1.5} ↔ Circle{radius=1.5}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [1] Rectangle{width=2.0, height=3.0} ↔ Rectangle{width=2.0, height=3.0}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [2] Circle{radius=0.1} ↔ Circle{radius=0.1}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [3] Rectangle{width=0.001, height=12345.678} ↔ Rectangle{width=0.001, height=12345.678}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]     [4] Circle{radius=3.141592653589793} ↔ Circle{radius=3.141592653589793}
+         ожидалось: совпадают тип, параметры, S и P
+         получено:  совпадают
+[OK]   BinaryFigureStorage: запись → чтение
+         ожидалось: без исключений
+         получено:  без исключений
+
+=== 8. Повреждённый и неподходящий бинарный файл ===
+[OK]   Мусор вместо сериализации
+         ожидалось: FigureStorageException
+         получено:  FigureStorageException: Файл <tmp>/garbage.bin повреждён или не является сериализованным списком фигур: java.io.StreamCorruptedException: invalid stream header: D18DD182
+[OK]   Обрезанный бинарный файл
+         ожидалось: FigureStorageException
+         получено:  FigureStorageException: Файл <tmp>/truncated.bin повреждён или не является сериализованным списком фигур: java.io.EOFException
+[OK]   Сериализован String вместо списка
+         ожидалось: FigureStorageException
+         получено:  FigureStorageException: Файл <tmp>/string.bin содержит объект типа java.lang.String, ожидался List<Figure>
+[OK]   Сериализован List<String>
+         ожидалось: FigureStorageException
+         получено:  FigureStorageException: Элемент № 0 имеет тип java.lang.String, ожидалась Figure
+[OK]   Текстовый файл, прочитанный как бинарный
+         ожидалось: FigureStorageException
+         получено:  FigureStorageException: Файл <tmp>/text-as-binary.txt повреждён или не является сериализованным списком фигур: java.io.StreamCorruptedException: invalid stream header: 43495243
+
+ИТОГО: пройдено 64, провалено 0

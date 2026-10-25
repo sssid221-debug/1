@@ -1,0 +1,68 @@
+$ java -cp out app.Main data/figures.txt figures.bin 5
+[finally] Попытка чтения data/figures.txt завершена
+
+Прочитано фигур: 4
+ 1. Circle       Circle{radius=1.5}                       S =       7.0686  P =     9.4248
+ 2. Rectangle    Rectangle{width=2.0, height=3.0}         S =       6.0000  P =    10.0000
+ 3. Circle       Circle{radius=10.0}                      S =     314.1593  P =    62.8319
+ 4. Rectangle    Rectangle{width=4.5, height=0.5}         S =       2.2500  P =    10.0000
+
+Цилиндр: основание = Circle{radius=10.0}, высота = 5.0
+Объём цилиндра: 1570.7963
+
+Список (4 фиг.) сохранён в /home/claude/java-lab-3/figures.bin
+
+$ java -cp out app.Main data/empty.txt empty.bin
+[finally] Попытка чтения data/empty.txt завершена
+
+Прочитано фигур: 0
+
+Список фигур пуст — цилиндр не создаётся.
+
+Список (0 фиг.) сохранён в /home/claude/java-lab-3/empty.bin
+
+$ java -cp out app.Main data/bad-unknown-type.txt out.bin
+Ошибка формата входного файла. Строка 2: неизвестный тип фигуры 'TRIANGLE'
+Загрузка отклонена, ни одна фигура не принята.
+[finally] Попытка чтения data/bad-unknown-type.txt завершена
+(код выхода: 1)
+
+$ java -cp out app.Main data/bad-param-count.txt out.bin
+Ошибка формата входного файла. Строка 2: для RECTANGLE ожидается 2 парам., получено 1
+Загрузка отклонена, ни одна фигура не принята.
+[finally] Попытка чтения data/bad-param-count.txt завершена
+(код выхода: 1)
+
+$ java -cp out app.Main data/bad-number.txt out.bin
+Ошибка формата входного файла. Строка 2: параметр № 2 не является числом: 'abc'
+  Причина: java.lang.NumberFormatException: For input string: "abc"
+Загрузка отклонена, ни одна фигура не принята.
+[finally] Попытка чтения data/bad-number.txt завершена
+(код выхода: 1)
+
+$ java -cp out app.Main data/bad-negative.txt out.bin
+Ошибка формата входного файла. Строка 2: Некорректный параметр 'radius': значение должно быть положительным, получено -1.0
+  Причина: exceptions.InvalidFigureParameterException: Некорректный параметр 'radius': значение должно быть положительным, получено -1.0
+Загрузка отклонена, ни одна фигура не принята.
+[finally] Попытка чтения data/bad-negative.txt завершена
+(код выхода: 1)
+
+$ java -cp out app.Main data/missing.txt out.bin
+Входной файл не найден: data/missing.txt
+[finally] Попытка чтения data/missing.txt завершена
+(код выхода: 1)
+
+$ java -cp out app.Main data/figures.txt data 5   # запись по пути каталога
+[finally] Попытка чтения data/figures.txt завершена
+
+Прочитано фигур: 4
+ 1. Circle       Circle{radius=1.5}                       S =       7.0686  P =     9.4248
+ 2. Rectangle    Rectangle{width=2.0, height=3.0}         S =       6.0000  P =    10.0000
+ 3. Circle       Circle{radius=10.0}                      S =     314.1593  P =    62.8319
+ 4. Rectangle    Rectangle{width=4.5, height=0.5}         S =       2.2500  P =    10.0000
+
+Цилиндр: основание = Circle{radius=1.5}, высота = 5.0
+Объём цилиндра: 35.3429
+
+Не удалось записать data: java.nio.file.FileSystemException: data: Is a directory
+(код выхода: 1)
